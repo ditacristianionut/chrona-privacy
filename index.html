@@ -12,6 +12,8 @@
       --text: #2c2c2c;
       --muted: #7a7a7a;
       --border: #e0dbd4;
+      --warn-bg: #fff8e6;
+      --warn-border: #f0d080;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -36,7 +38,12 @@
       padding: 32px; margin-bottom: 20px;
       border: 1px solid var(--border);
     }
+    .card.highlight {
+      background: var(--warn-bg);
+      border-color: var(--warn-border);
+    }
     h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: var(--accent); }
+    h3 { font-size: 0.95rem; font-weight: 600; margin: 16px 0 6px; color: var(--text); }
     p { margin-bottom: 12px; font-size: 0.95rem; }
     p:last-child { margin-bottom: 0; }
     ul { padding-left: 20px; margin-bottom: 12px; }
@@ -46,9 +53,34 @@
       font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px;
       padding: 3px 10px; border-radius: 20px; margin-bottom: 16px;
     }
+    .badge.ads {
+      background: #fff3e0; color: #e07b00;
+    }
+    .third-party-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .third-party-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .third-party-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #e8f4ef; display: flex; align-items: center;
+      justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+    .third-party-info strong { display: block; font-size: 0.95rem; }
+    .third-party-info span { font-size: 0.85rem; color: var(--muted); }
+    .toc { display: flex; flex-direction: column; gap: 6px; }
+    .toc a { font-size: 0.9rem; color: var(--accent); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
     footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pill {
+      background: #e8f4ef; color: var(--accent); font-size: 0.8rem;
+      font-weight: 600; padding: 3px 12px; border-radius: 20px;
+    }
+    .pill.red { background: #fce8e8; color: #c0392b; }
+    .pill.grey { background: #f0ede9; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -56,89 +88,293 @@
     <header>
       <div class="app-icon">🕐</div>
       <h1>Chrona</h1>
-      <p>World Clock &amp; Time Zone App</p>
+      <p>World Clock &amp; Time Zone App — Privacy Policy</p>
     </header>
 
+    <!-- Overview -->
     <div class="card">
       <span class="badge">PRIVACY POLICY</span>
       <h2>Overview</h2>
       <p>
         Chrona is a world clock app that displays the current time in cities around the world.
-        We are committed to protecting your privacy. This policy explains what data the app
-        accesses and how it is used.
+        This privacy policy explains what data is collected, by whom, and how it is used —
+        both by Chrona itself and by the third-party services it integrates with.
       </p>
       <p>
-        <strong>Short version:</strong> Chrona does not collect, transmit, or share any personal
-        data. Everything stays on your device.
+        <strong>Effective date:</strong> May 16, 2026 &nbsp;·&nbsp;
+        <strong>Developer:</strong> Cristian Ionut Dita &nbsp;·&nbsp;
+        <a href="mailto:dci.development.121@gmail.com">dci.development.121@gmail.com</a>
       </p>
     </div>
 
+    <!-- Table of contents -->
     <div class="card">
-      <h2>Data We Do Not Collect</h2>
-      <p>Chrona does not collect or transmit:</p>
-      <ul>
-        <li>Personal information (name, email, phone number, etc.)</li>
-        <li>Location data</li>
-        <li>Device identifiers</li>
-        <li>Usage analytics or crash reports</li>
-        <li>Any data to external servers</li>
-      </ul>
-      <p>The app has no internet permission and makes no network requests.</p>
+      <h2>Contents</h2>
+      <div class="toc">
+        <a href="#data-we-collect">1. Data Collected by Chrona</a>
+        <a href="#local-storage">2. Data Stored Locally on Your Device</a>
+        <a href="#ads">3. Advertising (AppLovin MAX)</a>
+        <a href="#analytics">4. Crash Reports &amp; Analytics</a>
+        <a href="#permissions">5. Android Permissions</a>
+        <a href="#third-parties">6. Third-Party Services</a>
+        <a href="#data-sharing">7. Data Sharing &amp; Sale</a>
+        <a href="#your-rights">8. Your Rights &amp; Choices</a>
+        <a href="#children">9. Children's Privacy</a>
+        <a href="#changes">10. Changes to This Policy</a>
+        <a href="#contact">11. Contact</a>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>Data Stored Locally on Your Device</h2>
-      <p>Chrona stores the following preferences <strong>only on your device</strong> using Android's DataStore:</p>
+    <!-- Data we collect -->
+    <div class="card" id="data-we-collect">
+      <h2>1. Data Collected by Chrona</h2>
+      <p>
+        Chrona itself <strong>does not collect, transmit, or sell any personal data</strong>.
+        The app does not have its own backend or analytics pipeline. Your preferences and
+        settings stay on your device.
+      </p>
+      <p>
+        However, Chrona integrates third-party SDKs (advertising and crash reporting) that
+        may collect certain data as described in sections 3 and 4 below.
+      </p>
+    </div>
+
+    <!-- Local storage -->
+    <div class="card" id="local-storage">
+      <h2>2. Data Stored Locally on Your Device</h2>
+      <p>
+        Chrona stores the following preferences <strong>only on your device</strong> using
+        Android's DataStore. This data is never sent to any server.
+      </p>
       <ul>
-        <li>Your selected wheel cities and their order</li>
+        <li>Your selected wheel cities and their display order</li>
         <li>Your home timezone setting</li>
-        <li>Your preferred time format (12h / 24h)</li>
-        <li>Your preferred theme (Light / Dark / System)</li>
+        <li>Your preferred time format (12 h / 24 h)</li>
+        <li>Your preferred theme (Auto / Light / Dark / Dynamic)</li>
+        <li>Your selected accent colour</li>
+        <li>Your crash-reporting preference (enabled / disabled)</li>
       </ul>
       <p>
-        This data never leaves your device and is not accessible to us or any third party.
-        You can clear it at any time by clearing the app's data in Android Settings.
+        You can clear all locally stored data at any time via <em>Android Settings → Apps →
+        Chrona → Storage → Clear Data</em>.
       </p>
     </div>
 
-    <div class="card">
-      <h2>Permissions</h2>
-      <p>Chrona does not request any sensitive Android permissions. It does not access:</p>
+    <!-- Ads -->
+    <div class="card highlight" id="ads">
+      <span class="badge ads">CONTAINS ADS</span>
+      <h2>3. Advertising — AppLovin MAX</h2>
+      <p>
+        Chrona displays banner advertisements served by
+        <a href="https://www.applovin.com" target="_blank" rel="noopener">AppLovin MAX</a>.
+        AppLovin is a third-party advertising platform that may collect and use data to
+        deliver relevant ads.
+      </p>
+
+      <h3>What AppLovin may collect</h3>
       <ul>
-        <li>Camera, microphone, or contacts</li>
-        <li>Location (GPS or network-based)</li>
-        <li>Storage / files</li>
-        <li>Internet or network state</li>
+        <li>Device identifiers — Google Advertising ID (GAID) and App Set ID</li>
+        <li>Device make, model, hardware, and operating system version</li>
+        <li>Screen size, orientation, and display properties</li>
+        <li>IP address and approximate location (country / region)</li>
+        <li>Time zone and locale (preferred language)</li>
+        <li>Network connection type and speed</li>
+        <li>App name, version, and session information</li>
+        <li>Advertising and tracking preferences you have set on your device</li>
       </ul>
-    </div>
 
-    <div class="card">
-      <h2>Children's Privacy</h2>
+      <h3>How AppLovin uses this data</h3>
       <p>
-        Chrona is suitable for all ages. We do not knowingly collect any information from
-        children or anyone else, as the app collects no data at all.
+        AppLovin uses this data to serve ads, measure ad performance, prevent fraud, and
+        improve its advertising platform. AppLovin may use the Google Advertising ID to serve
+        personalised (interest-based) ads. You can opt out of personalised ads at any time
+        in your device settings (see <a href="#your-rights">Section 8</a>).
+      </p>
+
+      <h3>AppLovin's policies</h3>
+      <p>
+        AppLovin's data practices are governed by their own privacy policy:
+        <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener">applovin.com/privacy</a>.
+        We encourage you to review it.
       </p>
     </div>
 
-    <div class="card">
-      <h2>Changes to This Policy</h2>
+    <!-- Analytics -->
+    <div class="card" id="analytics">
+      <h2>4. Crash Reports &amp; Analytics</h2>
       <p>
-        If we ever update this privacy policy, the new version will be published at this URL
-        with an updated effective date. We encourage you to review it periodically.
+        Chrona includes an optional crash-reporting feature to help us identify and fix bugs.
+        This feature is <strong>opt-in</strong> and can be toggled in
+        <em>Settings → Privacy → Crash Reports &amp; Analytics</em>.
+      </p>
+      <p>
+        When enabled, anonymous crash and diagnostic data may be collected, including:
+      </p>
+      <ul>
+        <li>Stack traces and error messages at the time of a crash</li>
+        <li>Device model and OS version</li>
+        <li>App version</li>
+      </ul>
+      <p>
+        No personally identifiable information is included in crash reports.
+        When the toggle is <strong>off</strong> (the default), no crash data is collected
+        or transmitted.
       </p>
     </div>
 
-    <div class="card">
-      <h2>Contact</h2>
+    <!-- Permissions -->
+    <div class="card" id="permissions">
+      <h2>5. Android Permissions</h2>
+      <p>Chrona requests the following Android permissions:</p>
+
+      <h3>Used</h3>
+      <div class="pill-row">
+        <span class="pill">INTERNET</span>
+        <span class="pill">AD_ID</span>
+      </div>
+      <ul style="margin-top: 12px;">
+        <li>
+          <strong>INTERNET</strong> — Required to load and display banner advertisements
+          from AppLovin MAX and, if enabled, to transmit crash reports.
+        </li>
+        <li>
+          <strong>AD_ID</strong> — Required by the AppLovin SDK to access the Google
+          Advertising ID for ad personalisation (subject to your device ad preferences).
+        </li>
+      </ul>
+
+      <h3>Not requested</h3>
+      <div class="pill-row">
+        <span class="pill grey">LOCATION</span>
+        <span class="pill grey">CAMERA</span>
+        <span class="pill grey">MICROPHONE</span>
+        <span class="pill grey">CONTACTS</span>
+        <span class="pill grey">STORAGE</span>
+        <span class="pill grey">SMS / CALL LOG</span>
+      </div>
+      <p style="margin-top: 12px;">
+        Chrona does not request any sensitive permissions beyond those listed above.
+      </p>
+    </div>
+
+    <!-- Third parties -->
+    <div class="card" id="third-parties">
+      <h2>6. Third-Party Services</h2>
+      <div class="third-party-row">
+        <div class="third-party-icon">📢</div>
+        <div class="third-party-info">
+          <strong>AppLovin MAX (Advertising)</strong>
+          <span>
+            Serves banner ads; may collect device identifiers, IP address, and ad interaction
+            data. &nbsp;
+            <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.applovin.com/optout/" target="_blank" rel="noopener">Opt Out</a>
+          </span>
+        </div>
+      </div>
+      <div class="third-party-row">
+        <div class="third-party-icon">🛡️</div>
+        <div class="third-party-info">
+          <strong>Crash Reporting (opt-in)</strong>
+          <span>
+            Collects anonymous crash diagnostics when you explicitly enable the setting.
+            No personal data is included.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data sharing -->
+    <div class="card" id="data-sharing">
+      <h2>7. Data Sharing &amp; Sale</h2>
       <p>
-        If you have any questions about this privacy policy, feel free to reach out:
-        <br />
+        Chrona (the developer) does <strong>not</strong> sell, rent, or share your personal
+        data with any third party for their own marketing purposes.
+      </p>
+      <p>
+        Data collected by AppLovin MAX is shared with AppLovin Corporation and its advertising
+        partners as described in AppLovin's privacy policy. Chrona has no control over that
+        data once it is collected by the AppLovin SDK.
+      </p>
+    </div>
+
+    <!-- Your rights -->
+    <div class="card" id="your-rights">
+      <h2>8. Your Rights &amp; Choices</h2>
+
+      <h3>Opt out of personalised ads</h3>
+      <p>
+        You can limit ad tracking or reset your Advertising ID at any time:
+      </p>
+      <ul>
+        <li>Android 12+: <em>Settings → Privacy → Ads → Delete advertising ID</em></li>
+        <li>Older Android: <em>Settings → Google → Ads → Opt out of Ads Personalisation</em></li>
+      </ul>
+
+      <h3>Disable crash reporting</h3>
+      <p>Open Chrona → <em>Settings → Privacy</em> and disable the
+        <strong>Crash Reports &amp; Analytics</strong> toggle (off by default).</p>
+
+      <h3>Delete locally stored data</h3>
+      <p>
+        Go to <em>Android Settings → Apps → Chrona → Storage → Clear Data</em>.
+        This resets all your in-app preferences.
+      </p>
+
+      <h3>GDPR / CCPA</h3>
+      <p>
+        If you are located in the European Union, European Economic Area, United Kingdom,
+        Switzerland, or California, you may have additional rights regarding your personal
+        data held by AppLovin. Please refer to
+        <a href="https://www.applovin.com/privacy/" target="_blank" rel="noopener">AppLovin's Privacy Policy</a>
+        and use their opt-out mechanism to exercise those rights.
+      </p>
+    </div>
+
+    <!-- Children -->
+    <div class="card" id="children">
+      <h2>9. Children's Privacy</h2>
+      <p>
+        Chrona is not directed to children under the age of 13 (or the applicable age of
+        digital consent in your region). We do not knowingly collect personal information
+        from children.
+      </p>
+      <p>
+        The AppLovin SDK is not configured in child-directed mode. If you believe a child has
+        inadvertently provided personal data, please contact us and we will take appropriate action.
+      </p>
+    </div>
+
+    <!-- Changes -->
+    <div class="card" id="changes">
+      <h2>10. Changes to This Policy</h2>
+      <p>
+        We may update this privacy policy from time to time. When we do, the revised version
+        will be published at this URL with an updated effective date. For material changes,
+        we may notify users via an in-app notice.
+      </p>
+      <p>
+        We encourage you to review this policy periodically to stay informed about how we
+        protect your information.
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="card" id="contact">
+      <h2>11. Contact</h2>
+      <p>
+        If you have any questions, requests, or concerns about this privacy policy or
+        Chrona's data practices, please contact:
+      </p>
+      <p>
+        <strong>Cristian Ionut Dita</strong><br />
         <a href="mailto:dci.development.121@gmail.com">dci.development.121@gmail.com</a>
       </p>
     </div>
 
     <footer>
-      <p>Effective date: May 14, 2026 &nbsp;·&nbsp; Chrona by Cristian Ionut Dita</p>
+      <p>Effective date: May 16, 2026 &nbsp;·&nbsp; Chrona by Cristian Ionut Dita</p>
     </footer>
   </div>
 </body>
